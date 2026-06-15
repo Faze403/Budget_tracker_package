@@ -1,4 +1,4 @@
-# Budget_Tracker - 가계부·예산 추적기
+# Budget_Tracker
 
 Python 프로그래밍 기말 프로젝트
 
