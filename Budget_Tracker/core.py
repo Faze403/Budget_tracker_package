@@ -1,4 +1,4 @@
-"""budget_tracker 패키지의 메인 클래스"""
+"""budget_tracker 패키지의 부모 클래스를 정의"""
 
 from datetime import datetime
 
@@ -23,35 +23,38 @@ class Transaction:
         """YYYY-MM-DD 형식의 날짜 문자열인지 검사한다."""
 
         if not isinstance(date, str):
-            raise TypeError("date는 YYYY-MM-DD 형식의 문자열이어야 합니다.")
+            raise TypeError("date must be a string in YYYY-MM-DD format.")
 
         try:
             parsed_date = datetime.strptime(date, "%Y-%m-%d")
         except ValueError as exc:
-            raise ValueError("date는 YYYY-MM-DD 형식을 사용해야 합니다.") from exc
+            raise ValueError("date must use YYYY-MM-DD format.") from exc
 
         return parsed_date.strftime("%Y-%m-%d")
 
     def _validate_amount(self, amount):
-        """금액이 숫자이며 0보다 큰지 검사한다."""
+        """금액이 숫자이며 0보다 큰 정수 금액인지 검사한다."""
 
         if isinstance(amount, bool) or not isinstance(amount, (int, float)):
-            raise TypeError("amount는 int 또는 float여야 합니다.")
+            raise TypeError("amount must be an int or float.")
 
         if amount <= 0:
-            raise ValueError("amount는 0보다 커야 합니다.")
+            raise ValueError("amount must be greater than 0.")
 
-        return float(amount)
+        if isinstance(amount, float) and not amount.is_integer():
+            raise ValueError("amount must be a whole number.")
+
+        return int(amount)
 
     def _normalize_category(self, category):
         """카테고리 문자열을 검사하고 공백을 정리한다."""
 
         if not isinstance(category, str):
-            raise TypeError("category는 문자열이어야 합니다.")
+            raise TypeError("category must be a string.")
 
         normalized_category = category.strip()
         if not normalized_category:
-            raise ValueError("category는 비어 있으면 안 됩니다.")
+            raise ValueError("category must not be empty.")
 
         return normalized_category
 
@@ -59,7 +62,7 @@ class Transaction:
         """설명 문자열을 검사하고 공백을 정리한다."""
 
         if not isinstance(description, str):
-            raise TypeError("description은 문자열이어야 합니다.")
+            raise TypeError("description must be a string.")
 
         return description.strip()
 
@@ -82,12 +85,12 @@ class Transaction:
         :return: 해당 월 거래이면 True, 아니면 False
         """
         if not isinstance(year_month, str):
-            raise TypeError("year_month는 YYYY-MM 형식의 문자열이어야 합니다.")
+            raise TypeError("year_month must be a string in YYYY-MM format.")
 
         try:
             datetime.strptime(year_month, "%Y-%m")
         except ValueError as exc:
-            raise ValueError("year_month는 YYYY-MM 형식을 사용해야 합니다.") from exc
+            raise ValueError("year_month must use YYYY-MM format.") from exc
 
         return self.date.startswith(year_month)
 
@@ -97,9 +100,9 @@ class Transaction:
         :return: 화면 표시용 요약 문자열
         >>> transaction = Transaction("2026-06-20", 9000, "식비", "점심")
         >>> transaction.summary()
-        '2026-06-20 | 식비 | 9000.00 | 점심'
+        '2026-06-20 | 식비 | 9000 | 점심'
         """
-        parts = [self.date, self.category, f"{self.amount:.2f}"]
+        parts = [self.date, self.category, str(self.amount)]
         if self.description:
             parts.append(self.description)
         return " | ".join(parts)
