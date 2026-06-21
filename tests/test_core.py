@@ -126,3 +126,25 @@ def test_budget_tracker_rejects_non_transaction_input():
 
     with pytest.raises(TypeError):
         tracker.add_transaction("거래 아님")
+
+
+def test_budget_tracker_handles_empty_month_report():
+    tracker = BudgetTracker()
+    report = tracker.monthly_report("2026-08")
+
+    assert tracker.calculate_balance("2026-08") == 0
+    assert tracker.category_totals("2026-08") == {}
+    assert "거래 수: 0건" in report
+    assert "잔액: 0원" in report
+    assert "카테고리별 합계: 없음" in report
+    assert "거래 내역: 없음" in report
+
+
+def test_budget_tracker_rejects_invalid_year_month():
+    tracker = BudgetTracker()
+
+    with pytest.raises(ValueError):
+        tracker.get_transactions_by_month("2026/06")
+
+    with pytest.raises(ValueError):
+        tracker.calculate_balance("2026/06")

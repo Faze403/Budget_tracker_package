@@ -40,3 +40,14 @@ def test_filter_transactions_and_calculate_category_totals():
         "용돈": 300000,
         "교통": -10000,
     }
+
+
+def test_utils_reject_invalid_input_types():
+    with pytest.raises(TypeError):
+        filter_transactions_by_month("거래 목록 아님", "2026-06")
+
+    with pytest.raises(ValueError):
+        filter_transactions_by_month([], "2026/06")
+
+    with pytest.raises(TypeError):
+        calculate_category_totals(["거래 객체 아님"])
