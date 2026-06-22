@@ -34,7 +34,7 @@ print(tracker.category_totals("2026-06"))
 print(tracker.monthly_report("2026-06"))
 ```
 
-예상 결과:
+예시 결과:
 
 ```text
 290000
@@ -74,3 +74,4 @@ print(tracker.monthly_report("2026-06"))
 - **작성자**: 박서진 (PARK SEOJIN)
 - **학번**: 202620859
 - **이메일**: [cockatoo@kku.ac.kr](mailto:cockatoo@kku.ac.kr)
+- **GitHub 저장소 URL**: [https://github.com/Faze403/Budget_Tracker_Package](https://github.com/Faze403/Budget_Tracker_Package)
