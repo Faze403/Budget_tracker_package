@@ -1,4 +1,4 @@
-"""budget_tracker 패키지의 공개 API를 제공한다."""
+"""budget_tracker 패키지"""
 
 from budget_tracker.core import BudgetTracker, Transaction
 from budget_tracker.subclass import Expense, Income

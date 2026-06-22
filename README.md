@@ -7,6 +7,8 @@ Python 프로그래밍 기말 프로젝트용 가계부 패키지입니다.
 `budget_tracker`는 일별 수입과 지출을 기록하고, 월별 거래를 모아 잔액과 카테고리별 금액 합계를 확인할 수 있는 Python 패키지입니다.
 모든 금액은 원 단위 정수이며, 수입과 지출을 객체로 나누어 관리합니다.
 
+GitHub 저장소: [https://github.com/Faze403/Budget_Tracker_Package](https://github.com/Faze403/Budget_Tracker_Package)
+
 ## 설치 방법
 
 ```powershell

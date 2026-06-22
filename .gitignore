@@ -1,18 +1,19 @@
+# Python 캐시 파일
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 
+# 테스트 및 가상환경 파일
 .pytest_cache/
 .venv/
 venv/
 
+# 빌드 산출물
 build/
 dist/
 *.egg-info/
 
-.coverage
-coverage.xml
-
+# 로컬 전용 프로젝트 파일
 수업자료
 PROJECT_PLAN.md

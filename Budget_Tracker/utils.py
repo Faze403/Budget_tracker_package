@@ -1,4 +1,4 @@
-"""budget_tracker 패키지의 보조 함수를 정의"""
+"""budget_tracker 패키지의 보조 함수"""
 
 from datetime import datetime
 

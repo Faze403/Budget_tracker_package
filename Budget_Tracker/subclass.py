@@ -1,4 +1,4 @@
-"""budget_tracker 패키지의 하위 클래스를 정의"""
+"""budget_tracker 패키지의 하위 클래스"""
 
 from budget_tracker.core import Transaction
 from budget_tracker.utils import format_tagged_summary
